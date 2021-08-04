@@ -1,0 +1,27 @@
+package com.smitcoderx.learn.trippin_business.UI.Fragments.Login
+
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.smitcoderx.learn.trippin_business.R
+import com.smitcoderx.learn.trippin_business.databinding.FragmentLoginBinding
+
+class LoginFragment : Fragment(R.layout.fragment_login) {
+
+    private lateinit var binding: FragmentLoginBinding
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentLoginBinding.bind(view)
+
+        binding.fabLogin.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+        }
+
+        binding.fabSignup.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToLoginSignupFragment())
+        }
+    }
+
+}
