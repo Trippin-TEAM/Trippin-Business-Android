@@ -61,10 +61,18 @@
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_bottomTypeFragment"
+            app:destination="@id/bottomTypeFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.smitcoderx.learn.trippin_business.UI.Fragments.Home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <dialog
+        android:id="@+id/bottomTypeFragment"
+        android:name="com.smitcoderx.learn.trippin_business.UI.Dialogs.BottomTypeFragment"
+        android:label="fragment_bottom_type"
+        tools:layout="@layout/fragment_bottom_type" />
 </navigation>

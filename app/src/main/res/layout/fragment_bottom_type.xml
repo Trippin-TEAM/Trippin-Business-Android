@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".UI.Dialogs.BottomTypeFragment">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/choose_business_type"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:contentDescription="@string/cancel_type"
+        android:focusable="true"
+        android:padding="10dp"
+        android:src="@drawable/ic_cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_hotel"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:text="@string/hotel"
+            android:textColor="@color/white"
+            app:checkedIconEnabled="true"
+            app:chipBackgroundColor="@drawable/chip_bg_state"
+            app:chipIcon="@drawable/ic_hotel"
+            app:chipIconEnabled="true"
+            app:chipIconTint="@android:color/holo_red_light"
+            app:chipStartPadding="10dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_restraunt"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:text="@string/restaurant"
+            android:textColor="@color/white"
+            app:checkedIconEnabled="true"
+            app:chipBackgroundColor="@drawable/chip_bg_state"
+            app:chipIcon="@drawable/ic_restaurant"
+            app:chipIconEnabled="true"
+            app:chipIconTint="@android:color/holo_orange_dark"
+            app:chipStartPadding="10dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_shop"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:text="@string/shops"
+            android:textColor="@color/white"
+            app:checkedIconEnabled="true"
+            app:chipBackgroundColor="@drawable/chip_bg_state"
+            app:chipIcon="@drawable/ic_shopping"
+            app:chipIconEnabled="true"
+            app:chipIconTint="@android:color/holo_blue_dark"
+            app:chipStartPadding="10dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_snacks"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:text="@string/snacks"
+            android:textColor="@color/white"
+            app:checkedIconEnabled="true"
+            app:chipBackgroundColor="@drawable/chip_bg_state"
+            app:chipIcon="@drawable/ic_snacks"
+            app:chipIconEnabled="true"
+            app:chipIconTint="@color/main_color" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_ts"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:text="@string/tourist_spots"
+            android:textColor="@color/white"
+            app:checkedIconEnabled="true"
+            app:chipBackgroundColor="@drawable/chip_bg_state"
+            app:chipIcon="@drawable/ic_tourist"
+            app:chipIconEnabled="true"
+            app:chipIconTint="@android:color/holo_green_dark" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_other"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:text="@string/others"
+            android:textColor="@color/white"
+            app:checkedIconEnabled="true"
+            app:chipBackgroundColor="@drawable/chip_bg_state"
+            app:chipIcon="@drawable/ic_other"
+            app:chipIconEnabled="true"
+            app:chipIconTint="@color/white" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ti_type_other"
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:enabled="false"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/slate_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_group">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:hint="@string/specify_other"
+            android:inputType="text"
+            android:textColor="@color/slate_black"
+            android:textColorHint="@color/slate_black"
+            android:textSize="18sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/ripple_btn_bg"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/submit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ti_type_other" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,4 +24,17 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="goto_login_and_signup">Goto Login And Signup</string>
     <string name="get_registerd">Get Registerd</string>
+    <string name="hotel">Hotel</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="shops">Shops</string>
+    <string name="snacks">Snacks</string>
+    <string name="tourist_spots">Tourist Spots</string>
+    <string name="others">Others</string>
+    <string name="specify_other">Specify Other</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="choose_business_type">Choose Business Type</string>
+    <string name="cancel_type">Cancel Type</string>
+    <string name="field_required">This Field is Required</string>
+    <string name="password_limit">Password must be minimum 8 characters</string>
 </resources>

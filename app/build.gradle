@@ -69,5 +69,8 @@ dependencies {
     // CircleImageView
     implementation "de.hdodenhof:circleimageview:$circleImageView_version"
 
+    // SpinKit
+    implementation "com.github.ybq:Android-SpinKit:$spinKit_version"
+
 
 }
