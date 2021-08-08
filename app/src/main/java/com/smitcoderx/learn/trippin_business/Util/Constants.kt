@@ -6,5 +6,7 @@ object Constants {
     const val LOGGEDIN = "LoggedIn"
     const val TOKEN = "Token"
     const val TAG = "Trippin-Business"
+    const val BASE_URL = "http://100.25.142.90/"
+    const val IMAGE_URL = "http://100.25.142.90/static/images/"
 
 }

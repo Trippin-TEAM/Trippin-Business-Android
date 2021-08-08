@@ -2,9 +2,10 @@ package com.smitcoderx.learn.trippin_business.API
 
 import com.smitcoderx.learn.trippin_business.Model.Login
 import com.smitcoderx.learn.trippin_business.Model.Register
+import com.smitcoderx.learn.trippin_business.Model.User
+import okhttp3.ResponseBody
 import retrofit2.Response
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface TrippinApi {
 
@@ -27,4 +28,13 @@ interface TrippinApi {
         @Query("password") password: String
     ): Response<Login>
 
+    @GET("me")
+    suspend fun getMe(
+        @Header("x-access-token") token: String
+    ): Response<User>
+
+    @GET("/getimages/{id}")
+    suspend fun getImage(
+        @Path("id") id: String
+    ): Response<ResponseBody>
 }

@@ -69,10 +69,22 @@
         android:id="@+id/homeFragment"
         android:name="com.smitcoderx.learn.trippin_business.UI.Fragments.Home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_imageUploadFragment"
+            app:destination="@id/imageUploadFragment" />
+    </fragment>
     <dialog
         android:id="@+id/bottomTypeFragment"
         android:name="com.smitcoderx.learn.trippin_business.UI.Dialogs.BottomTypeFragment"
         android:label="fragment_bottom_type"
         tools:layout="@layout/fragment_bottom_type" />
+    <dialog
+        android:id="@+id/imageUploadFragment"
+        android:name="com.smitcoderx.learn.trippin_business.UI.Dialogs.ImageUploadFragment"
+        android:label="fragment_image_upload"
+        tools:layout="@layout/fragment_image_upload" />
 </navigation>

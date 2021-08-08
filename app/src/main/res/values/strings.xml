@@ -37,4 +37,6 @@
     <string name="cancel_type">Cancel Type</string>
     <string name="field_required">This Field is Required</string>
     <string name="password_limit">Password must be minimum 8 characters</string>
+    <string name="page">Page</string>
+    <string name="review">Review</string>
 </resources>

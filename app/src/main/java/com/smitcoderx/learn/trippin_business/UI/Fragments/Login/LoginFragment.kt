@@ -6,7 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.github.ybq.android.spinkit.style.CubeGrid
+import com.github.ybq.android.spinkit.style.FoldingCube
 import com.google.android.material.snackbar.Snackbar
 import com.smitcoderx.learn.trippin_business.API.ApiClient
 import com.smitcoderx.learn.trippin_business.R
@@ -49,8 +49,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             .lowercase(Locale.getDefault())
         val password = binding.tiLoginPassword.editText!!.text.toString().trim()
         val progressBar = binding.progress
-        val cubeGrid = CubeGrid()
-        progressBar.indeterminateDrawable = cubeGrid
+        val foldingCube = FoldingCube()
+        progressBar.indeterminateDrawable = foldingCube
 
         lifecycleScope.launchWhenCreated {
             val response = try {
