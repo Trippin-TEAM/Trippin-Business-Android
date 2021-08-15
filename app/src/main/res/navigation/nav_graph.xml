@@ -54,7 +54,7 @@
         android:id="@+id/signupFragment"
         android:name="com.smitcoderx.learn.trippin_business.UI.Fragments.Signup.SignupFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_login_signup" >
+        tools:layout="@layout/fragment_login_signup">
         <action
             android:id="@+id/action_signupFragment_to_loginSignupFragment"
             app:destination="@id/loginSignupFragment" />
@@ -69,22 +69,31 @@
         android:id="@+id/homeFragment"
         android:name="com.smitcoderx.learn.trippin_business.UI.Fragments.Home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_imageUploadFragment"
-            app:destination="@id/imageUploadFragment" />
+            android:id="@+id/action_homeFragment_to_uploadImageActivity"
+            app:destination="@id/uploadImageActivity" />
     </fragment>
     <dialog
         android:id="@+id/bottomTypeFragment"
         android:name="com.smitcoderx.learn.trippin_business.UI.Dialogs.BottomTypeFragment"
         android:label="fragment_bottom_type"
         tools:layout="@layout/fragment_bottom_type" />
-    <dialog
-        android:id="@+id/imageUploadFragment"
-        android:name="com.smitcoderx.learn.trippin_business.UI.Dialogs.ImageUploadFragment"
-        android:label="fragment_image_upload"
-        tools:layout="@layout/fragment_image_upload" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.smitcoderx.learn.trippin_business.UI.Fragments.Profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_uploadImageActivity"
+            app:destination="@id/uploadImageActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/uploadImageActivity"
+        android:name="com.smitcoderx.learn.trippin_business.UI.UploadImageActivity"
+        android:label="activity_upload_image"
+        tools:layout="@layout/activity_upload_image" />
 </navigation>

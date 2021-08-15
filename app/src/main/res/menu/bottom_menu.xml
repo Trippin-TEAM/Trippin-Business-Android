@@ -7,8 +7,8 @@
         android:title="@string/page" />
 
     <item
-        android:id="@+id/reviewFragment"
-        android:icon="@drawable/ic_notification"
-        android:title="@string/review" />
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_placeholder"
+        android:title="@string/profile" />
 
 </menu>

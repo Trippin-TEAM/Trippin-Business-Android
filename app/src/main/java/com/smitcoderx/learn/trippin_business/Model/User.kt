@@ -11,5 +11,5 @@ data class User(
     val role: String,
     val type: String,
     val username: String,
-    val message: String
+    val image: String
 )

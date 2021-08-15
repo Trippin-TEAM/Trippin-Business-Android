@@ -13,8 +13,12 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.snackbar.Snackbar
 import com.smitcoderx.learn.trippin_business.API.ApiClient
+import com.smitcoderx.learn.trippin_business.Adapters.ReviewAdapter
 import com.smitcoderx.learn.trippin_business.R
+import com.smitcoderx.learn.trippin_business.UI.MainActivity
 import com.smitcoderx.learn.trippin_business.Util.Constants.IMAGE_URL
 import com.smitcoderx.learn.trippin_business.Util.Constants.TAG
 import com.smitcoderx.learn.trippin_business.Util.PreferenceManager
@@ -25,6 +29,7 @@ import java.io.IOException
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var reviewAdapter: ReviewAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,11 +40,36 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         getMe(token!!)
 
+        setupRv()
+
         binding.ivBusiness.setOnClickListener {
             prefs.logoutUser()
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
 
+    }
+
+    private fun toolbar(placeName: String) {
+        binding.toolbar.apply {
+            (activity as MainActivity).setSupportActionBar(this)
+
+            var isShow = true
+            var scrollRange = -1
+            binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { barLayout, verticalOffset ->
+                if (scrollRange == -1) {
+                    scrollRange = barLayout?.totalScrollRange!!
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    binding.collapsingToolbarLayout.title = placeName
+                    binding.collapsingToolbarLayout.setCollapsedTitleTextColor(resources.getColor(R.color.white))
+                    isShow = true
+                } else if (isShow) {
+                    binding.collapsingToolbarLayout.title =
+                        " " //careful there should a space between double quote otherwise it wont work
+                    isShow = false
+                }
+            })
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -57,10 +87,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             if (response.isSuccessful && response.body() != null) {
                 val user = response.body()
-                val imageUrl = IMAGE_URL + user!!._id + ".jpg"
+                val id = user!!._id
+                val placeName = user.name
+                val imageUrl = IMAGE_URL + user._id + ".jpg"
 
                 binding.apply {
-                    tvPlaceName.text = user.name
+                    tvPlaceName.text = placeName
                     tvPlaceName.setOnClickListener { }
                     tvUsername.text = "@${user.username}"
                     Glide.with(requireContext())
@@ -73,7 +105,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                                 target: Target<Drawable>?,
                                 isFirstResource: Boolean
                             ): Boolean {
-                                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToImageUploadFragment())
+                                activity?.let {
+                                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToUploadImageActivity())
+                                }
                                 return false
                             }
 
@@ -84,13 +118,48 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                                 dataSource: DataSource?,
                                 isFirstResource: Boolean
                             ): Boolean {
-
                                 return false
                             }
                         })
                         .into(ivBusiness)
                 }
+                getReviews(id)
+                toolbar(placeName)
             }
+        }
+    }
+
+    private fun getReviews(id: String) {
+        lifecycleScope.launchWhenCreated {
+            val response = try {
+                ApiClient.retrofitService.getReviews(id)
+            } catch (e: IOException) {
+                Log.e(TAG, "getReview IO: ${e.message}")
+                return@launchWhenCreated
+            } catch (e: HttpException) {
+                Log.e(TAG, "getReview Http: ${e.message}")
+                return@launchWhenCreated
+            }
+
+            if (response.isSuccessful && response.body() != null) {
+                val reviews = response.body()
+                reviewAdapter.differ.submitList(reviews)
+            } else {
+                binding.rvReview.visibility = View.GONE
+                Snackbar.make(
+                    binding.homeLayout,
+                    "No Reviews Available for your Place",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun setupRv() {
+        reviewAdapter = ReviewAdapter()
+        binding.rvReview.apply {
+            setHasFixedSize(true)
+            adapter = reviewAdapter
         }
     }
 }

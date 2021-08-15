@@ -38,4 +38,9 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         splashScope.cancel()
         super.onPause()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        splashScope.cancel()
+    }
 }

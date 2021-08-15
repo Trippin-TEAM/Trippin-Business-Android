@@ -4,5 +4,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent_black">#66000000</color>
+    <color name="transparent_white">#66FFFFFF</color>
     <color name="slate_black">#171717</color>
 </resources>
