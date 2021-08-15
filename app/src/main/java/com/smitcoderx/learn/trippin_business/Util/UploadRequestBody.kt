@@ -26,7 +26,7 @@ class UploadRequestBody(
         fileInputStream.use { inputStream ->
             var read: Int
             val handler = Handler(Looper.getMainLooper())
-            while (inputStream.read(buffer).also { read = it } != -1 ) {
+            while (inputStream.read(buffer).also { read = it } != -1) {
                 handler.post(ProgressUpdater(uploaded, length))
                 uploaded += read
                 sink.write(buffer, 0, read)

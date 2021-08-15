@@ -96,7 +96,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     tvPlaceName.setOnClickListener { }
                     tvUsername.text = "@${user.username}"
                     Glide.with(requireContext())
-                        .load(imageUrl)
+                        .load(user.image)
                         .centerCrop()
                         .listener(object : RequestListener<Drawable> {
                             override fun onLoadFailed(

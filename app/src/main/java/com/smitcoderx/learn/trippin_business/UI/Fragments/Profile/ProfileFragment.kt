@@ -89,11 +89,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 val user = response.body()
 
                 binding.apply {
-                    /*                  tvPlaceName.text = user!!.name
-                                      tvPlaceName.setOnClickListener { }
-                                      tvUsername.text = "@${user.username}"*/
+                    tiMeName.editText!!.setText(user!!.name)
+                    tiMeEmail.editText!!.setText(user.email)
+                    tiMeUsername.editText!!.setText("@${user.username}")
+                    tiMeMobileno.editText!!.setText(user.mobile_no)
+                    tiMeAddress.editText!!.setText(user.address)
+                    tiMeCity.editText!!.setText(user.city)
+                    tiMeType.editText!!.setText(user.type)
                     Glide.with(requireContext())
-                        .load(user!!.image)
+                        .load(user.image)
                         .centerCrop()
                         .transition(DrawableTransitionOptions.withCrossFade())
                         .placeholder(R.drawable.ic_placeholder)
@@ -108,6 +112,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.apply {
             fabSave.show()
             fabEdit.hide()
+            tiMeName.isEnabled = true
+            tiMeMobileno.isEnabled = true
+            tiMeDesc.isEnabled = true
+            tiMeAddress.isEnabled = true
+            tiMeCity.isEnabled = true
+            tiMeType.isEnabled = true
         }
     }
 
@@ -115,6 +125,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.apply {
             fabEdit.show()
             fabSave.hide()
+            tiMeName.isEnabled = false
+            tiMeMobileno.isEnabled = false
+            tiMeDesc.isEnabled = false
+            tiMeAddress.isEnabled = false
+            tiMeCity.isEnabled = false
+            tiMeType.isEnabled = false
         }
     }
 

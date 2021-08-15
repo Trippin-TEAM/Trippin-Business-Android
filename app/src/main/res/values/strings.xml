@@ -47,4 +47,5 @@
     <string name="edit">Edit</string>
     <string name="save">Save</string>
     <string name="update_profile_image">Update Profile Image</string>
+    <string name="add_your_description_here">Add Your Description Here....</string>
 </resources>
