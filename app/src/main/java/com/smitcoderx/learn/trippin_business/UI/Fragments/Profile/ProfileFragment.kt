@@ -10,14 +10,19 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.snackbar.Snackbar
 import com.smitcoderx.learn.trippin_business.API.ApiClient
 import com.smitcoderx.learn.trippin_business.R
 import com.smitcoderx.learn.trippin_business.UI.MainActivity
 import com.smitcoderx.learn.trippin_business.Util.Constants.TAG
 import com.smitcoderx.learn.trippin_business.Util.PreferenceManager
 import com.smitcoderx.learn.trippin_business.databinding.FragmentProfileBinding
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import org.json.JSONObject
 import retrofit2.HttpException
 import java.io.IOException
+import java.util.*
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
@@ -39,10 +44,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         binding.fabSave.setOnClickListener {
             allDisabled()
+            updateUser(token)
         }
 
         binding.fabCamera.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToUploadImageActivity())
+        }
+
+        binding.btnLogout.setOnClickListener {
+            prefs.logoutUser()
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLoginFragment())
         }
 
     }
@@ -64,7 +75,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     isShow = true
                 } else if (isShow) {
                     binding.collapsingToolbarLayout.title =
-                        " " //careful there should a space between double quote otherwise it wont work
+                        " "
                     binding.fabCamera.show()
                     isShow = false
                 }
@@ -94,6 +105,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     tiMeUsername.editText!!.setText("@${user.username}")
                     tiMeMobileno.editText!!.setText(user.mobile_no)
                     tiMeAddress.editText!!.setText(user.address)
+                    tiMeDesc.editText!!.setText(user.desc)
                     tiMeCity.editText!!.setText(user.city)
                     tiMeType.editText!!.setText(user.type)
                     Glide.with(requireContext())
@@ -104,6 +116,35 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                         .error(R.drawable.ic_placeholder)
                         .into(ivMe)
                 }
+            }
+        }
+    }
+
+    private fun updateUser(token: String) {
+        lifecycleScope.launchWhenCreated {
+            val updateUser = JSONObject()
+            updateUser.put("name", binding.tiMeName.editText!!.text.toString().trim())
+            updateUser.put("mobile_no", binding.tiMeMobileno.editText!!.text.toString().trim())
+            updateUser.put("desc", binding.tiMeDesc.editText!!.text.toString().trim())
+            updateUser.put("address", binding.tiMeAddress.editText!!.text.toString().trim())
+            updateUser.put("type", binding.tiMeType.editText!!.text.toString().trim())
+            val requestBody =
+                RequestBody.create(MediaType.parse("application/json"), updateUser.toString())
+            val response = try {
+                ApiClient.retrofitService.updateUser(token, requestBody)
+            } catch (e: IOException) {
+                Log.e(TAG, "getMe IO: ${e.message}")
+                return@launchWhenCreated
+            } catch (e: HttpException) {
+                Log.e(TAG, "getMe Http: ${e.message}")
+                return@launchWhenCreated
+            }
+            if (response.isSuccessful && response.body() != null) {
+                val updateUserData = response.body()
+                Snackbar.make(
+                    requireView(),
+                    updateUserData!!.message.uppercase(Locale.getDefault()), Snackbar.LENGTH_LONG
+                ).show()
             }
         }
     }
@@ -133,5 +174,4 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             tiMeType.isEnabled = false
         }
     }
-
 }

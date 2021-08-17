@@ -32,7 +32,7 @@
                 app:layout_collapseMode="parallax"
                 tools:src="@mipmap/ic_launcher" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -48,6 +48,8 @@
                     android:textColor="@color/slate_black"
                     android:textSize="25sp"
                     android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="Place Name" />
 
                 <TextView
@@ -57,11 +59,21 @@
                     android:layout_margin="5dp"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_placeName"
                     app:layout_constraintTop_toBottomOf="@+id/tv_placeName"
                     tools:text="@string/username" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    T
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Average Rating: 5.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

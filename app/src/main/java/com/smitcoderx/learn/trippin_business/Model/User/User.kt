@@ -1,4 +1,4 @@
-package com.smitcoderx.learn.trippin_business.Model
+package com.smitcoderx.learn.trippin_business.Model.User
 
 data class User(
     val _id: String,
@@ -11,5 +11,6 @@ data class User(
     val role: String,
     val type: String,
     val username: String,
-    val image: String
+    val image: String,
+    val average_rating: Float
 )

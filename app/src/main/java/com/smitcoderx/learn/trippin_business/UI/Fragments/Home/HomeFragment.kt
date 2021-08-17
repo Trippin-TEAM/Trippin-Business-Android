@@ -19,7 +19,6 @@ import com.smitcoderx.learn.trippin_business.API.ApiClient
 import com.smitcoderx.learn.trippin_business.Adapters.ReviewAdapter
 import com.smitcoderx.learn.trippin_business.R
 import com.smitcoderx.learn.trippin_business.UI.MainActivity
-import com.smitcoderx.learn.trippin_business.Util.Constants.IMAGE_URL
 import com.smitcoderx.learn.trippin_business.Util.Constants.TAG
 import com.smitcoderx.learn.trippin_business.Util.PreferenceManager
 import com.smitcoderx.learn.trippin_business.databinding.FragmentHomeBinding
@@ -41,11 +40,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         getMe(token!!)
 
         setupRv()
-
-        binding.ivBusiness.setOnClickListener {
-            prefs.logoutUser()
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
-        }
 
     }
 
@@ -89,7 +83,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 val user = response.body()
                 val id = user!!._id
                 val placeName = user.name
-                val imageUrl = IMAGE_URL + user._id + ".jpg"
 
                 binding.apply {
                     tvPlaceName.text = placeName
@@ -123,7 +116,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         })
                         .into(ivBusiness)
                 }
-                getReviews(id)
+//                getReviews(id)
                 toolbar(placeName)
             }
         }

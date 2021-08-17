@@ -1,11 +1,13 @@
 package com.smitcoderx.learn.trippin_business.API
 
-import com.smitcoderx.learn.trippin_business.Model.Login
-import com.smitcoderx.learn.trippin_business.Model.Register
+import com.smitcoderx.learn.trippin_business.Model.Auth.Login
+import com.smitcoderx.learn.trippin_business.Model.Auth.Register
+import com.smitcoderx.learn.trippin_business.Model.Image.UploadImage
 import com.smitcoderx.learn.trippin_business.Model.Review.Reviews
-import com.smitcoderx.learn.trippin_business.Model.UploadImage
-import com.smitcoderx.learn.trippin_business.Model.User
+import com.smitcoderx.learn.trippin_business.Model.User.UpdateUser
+import com.smitcoderx.learn.trippin_business.Model.User.User
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -46,4 +48,12 @@ interface TrippinApi {
         @Header("x-access-token") token: String,
         @Part file: MultipartBody.Part
     ): Response<UploadImage>
+
+    @Headers("Content-Type: application/json")
+    @PUT("/update")
+    suspend fun updateUser(
+        @Header("x-access-token") token: String,
+        @Body update: RequestBody
+    ): Response<UpdateUser>
+
 }
