@@ -13,5 +13,4 @@ object Constants {
     const val REQUEST_PERMISSION = 100
     const val DEFAULT_BUFFER_SIZE = 2048
 
-
 }

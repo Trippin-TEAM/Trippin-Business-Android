@@ -112,8 +112,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                         .load(user.image)
                         .centerCrop()
                         .transition(DrawableTransitionOptions.withCrossFade())
-                        .placeholder(R.drawable.ic_placeholder)
-                        .error(R.drawable.ic_placeholder)
+                        .error(R.drawable.no_image)
                         .into(ivMe)
                 }
             }

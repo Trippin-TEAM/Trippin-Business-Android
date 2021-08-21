@@ -64,16 +64,19 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
 
             if (response.isSuccessful && response.body() != null) {
-                binding.transparentLayout.visibility = View.GONE
-                progressBar.visibility = View.GONE
-                binding.spinKit.visibility = View.GONE
                 val login = response.body()
                 if (login!!.message == "username or password does not match") {
+                    binding.transparentLayout.visibility = View.GONE
+                    progressBar.visibility = View.GONE
+                    binding.spinKit.visibility = View.GONE
                     Snackbar.make(
                         requireView(),
                         login.message.uppercase(Locale.getDefault()), Snackbar.LENGTH_LONG
                     ).show()
                 } else {
+                    binding.transparentLayout.visibility = View.GONE
+                    progressBar.visibility = View.GONE
+                    binding.spinKit.visibility = View.GONE
                     prefs.setToken(login.token)
                     prefs.setLoggedIn(true)
                     Snackbar.make(
@@ -82,6 +85,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     ).show()
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
                 }
+            } else {
+                binding.transparentLayout.visibility = View.GONE
+                progressBar.visibility = View.GONE
+                binding.spinKit.visibility = View.GONE
+                Snackbar.make(
+                    requireView(),
+                   "No User Found", Snackbar.LENGTH_LONG
+                ).show()
             }
         }
     }

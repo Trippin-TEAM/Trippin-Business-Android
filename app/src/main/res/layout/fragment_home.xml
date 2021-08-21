@@ -65,13 +65,20 @@
                     tools:text="@string/username" />
 
                 <TextView
+                    android:id="@+id/tv_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    T
+                    android:textColor="@color/white"
+                    android:padding="10dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/btn_trans_background"
+                    android:layout_margin="10dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Average Rating: 5.0" />
+                    tools:text="5.0"
+                    app:drawableStartCompat="@drawable/ic_star" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

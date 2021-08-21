@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.smitcoderx.learn.trippin_business.Model.Review.ReviewsItem
 import com.smitcoderx.learn.trippin_business.R
-import com.smitcoderx.learn.trippin_business.Util.Constants
+import com.smitcoderx.learn.trippin_business.Util.Constants.IMAGE_URL
 import com.smitcoderx.learn.trippin_business.databinding.ReviewItemLayoutBinding
 
 class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ReviewHolder>() {
@@ -20,14 +19,12 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ReviewHolder>() {
 
         @SuppressLint("SetTextI18n")
         fun bind(review: ReviewsItem) {
-            val imageUrl = Constants.IMAGE_URL + review.user_id + ".jpg"
+            val imageUrl = IMAGE_URL + review.user_id + ".jpg"
             binding.apply {
                 Glide.with(itemView)
                     .load(imageUrl)
+                    .error(R.drawable.no_image)
                     .centerCrop()
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .placeholder(R.drawable.ic_placeholder)
-                    .error(R.drawable.main)
                     .into(circleImageView)
 
                 tvName.text = review.name

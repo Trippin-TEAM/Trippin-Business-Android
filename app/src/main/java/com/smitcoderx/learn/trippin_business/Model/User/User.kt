@@ -12,5 +12,5 @@ data class User(
     val type: String,
     val username: String,
     val image: String,
-    val average_rating: Float
+    val average_ratings: Float
 )

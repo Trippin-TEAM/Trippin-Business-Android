@@ -23,6 +23,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.smitcoderx.learn.trippin_business.API.ApiClient
 import com.smitcoderx.learn.trippin_business.Util.Constants
 import com.smitcoderx.learn.trippin_business.Util.Constants.REQUEST_CAPTURE_IMAGE
+import com.smitcoderx.learn.trippin_business.Util.Constants.REQUEST_PICK_IMAGE
 import com.smitcoderx.learn.trippin_business.Util.Constants.TAG
 import com.smitcoderx.learn.trippin_business.Util.PreferenceManager
 import com.smitcoderx.learn.trippin_business.Util.UploadRequestBody
@@ -75,7 +76,7 @@ class UploadImageActivity : AppCompatActivity(), UploadRequestBody.UploadCallbac
         Intent(Intent.ACTION_GET_CONTENT).also { intent ->
             intent.type = "image/*"
             intent.resolveActivity(packageManager)?.also {
-                startActivityForResult(intent, Constants.REQUEST_PICK_IMAGE)
+                startActivityForResult(intent, REQUEST_PICK_IMAGE)
             }
         }
     }
@@ -83,9 +84,9 @@ class UploadImageActivity : AppCompatActivity(), UploadRequestBody.UploadCallbac
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == Constants.REQUEST_CAPTURE_IMAGE) {
+            if (requestCode == REQUEST_CAPTURE_IMAGE) {
                 Glide.with(this).load(currentPhotoPath).into(binding.ivImage)
-            } else if (requestCode == Constants.REQUEST_PICK_IMAGE) {
+            } else if (requestCode == REQUEST_PICK_IMAGE) {
                 selectedImageUri = data?.data
                 Glide.with(this).load(selectedImageUri).into(binding.ivImage)
             }
